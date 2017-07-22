@@ -22,6 +22,26 @@ defmodule Dispatcher do
   #   Proxy.forward conn, path, "http://resource/themes/"
   # end
 
+  match "/tracking-sessions/*path" do
+    Proxy.forward conn, path, "http://resource/tracking-sessions/"
+  end
+
+  match "/anchors-configurations/*path" do
+    Proxy.forward conn, path, "http://resource/anchors-configurations/"
+  end
+
+  match "/deployed-anchors/*path" do
+    Proxy.forward conn, path, "http://resource/deployed-anchors/"
+  end
+
+  match "/points-coordinates/*path" do
+    Proxy.forward conn, path, "http://resource/points-coordinates/"
+  end
+
+  match "/tracking-location-elements/*path" do
+    Proxy.forward conn, path, "http://resource/tracking-location-elements/"
+  end
+
   match _ do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )
   end
