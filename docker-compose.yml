@@ -4,6 +4,7 @@ services:
     image: semtech/mu-identifier:1.3.0
     links:
       - dispatcher:dispatcher
+      - datakart-raw-tracking-data-service:datakart-raw-tracking-data-service
     ports:
       - "80:80"
   dispatcher:
@@ -27,7 +28,11 @@ services:
       - db:database
     volumes:
       - ./config/resources:/config
-  import:
-    image: cecemel/datakart-import-data:latest
-    links:
-      - dispatcher:mu-host
+  datakart-raw-tracking-data-service:
+    image: cecemel/datakart-raw-tracking-data-service:latest
+    #volumes:
+    #  - ./data/datakart-raw-tracking:/data
+#  import:
+#    image: cecemel/datakart-import-data:latest
+#    links:
+#      - dispatcher:mu-host
