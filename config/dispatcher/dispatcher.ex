@@ -38,9 +38,9 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://resource/points-coordinates/"
   end
 
-#  match "/raw-trackings-data/*path" do
-#    Proxy.forward conn, path, "http://resource/raw-trackings-data/"
-#  end
+  match "/raw-trackings-data/*path" do
+    Proxy.forward conn, path, "http://datakart-raw-tracking-data-service/raw-trackings-data/"
+  end
 
   match _ do
     send_resp( conn, 404, "Route not found.  See config/dispatcher.ex" )

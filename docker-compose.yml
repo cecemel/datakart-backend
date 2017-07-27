@@ -30,9 +30,12 @@ services:
       - ./config/resources:/config
   datakart-raw-tracking-data-service:
     image: cecemel/datakart-raw-tracking-data-service:latest
-    #volumes:
-    #  - ./data/datakart-raw-tracking:/data
-#  import:
-#    image: cecemel/datakart-import-data:latest
-#    links:
-#      - dispatcher:mu-host
+    #ports:
+    #  - "99:5000" #debugging
+    volumes:
+      #- /Users/felix/git/datakart/datakart-raw-tracking-data-service:/app # for debugging
+      - ./data/datakart-raw-tracking:/data
+  import:
+    image: cecemel/datakart-import-data:latest
+    links:
+      - dispatcher:mu-host
