@@ -21,7 +21,7 @@ defmodule Dispatcher do
   # match "/themes/*path" do
   #   Proxy.forward conn, path, "http://resource/themes/"
   # end
-
+  
   match "/tracking-sessions/*path" do
     Proxy.forward conn, path, "http://resource/tracking-sessions/"
   end
