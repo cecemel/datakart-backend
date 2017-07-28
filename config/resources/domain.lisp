@@ -6,6 +6,8 @@
   :properties `(
                   (:description  :string  ,(s-prefix "pozyx:trackingSessionDescription"))
                   (:raw-tracking-data-id  :string  ,(s-prefix "pozyx:rawTrackingDataId"))
+                  (:start-time  :string  ,(s-prefix "pozyx:startTime"))
+                  (:end-time  :string  ,(s-prefix "pozyx:endTime"))
                )
 
   :has-one `((anchors-configuration :via ,(s-prefix "pozyx:hasAnchorsConfiguration")
