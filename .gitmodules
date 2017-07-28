@@ -1,0 +1,3 @@
+[submodule "datakart-raw-tracking-data-service"]
+	path = datakart-raw-tracking-data-service
+	url = https://github.com/cecemel/datakart-raw-tracking-data-service.git

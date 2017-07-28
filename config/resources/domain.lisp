@@ -1,40 +1,16 @@
 (in-package :mu-cl-resources)
 
-;;;;
-;; NOTE
-;; docker-compose stop; docker-compose rm; docker-compose up
-;; after altering this file.
-
-;; Describe your resources here
-
-;; The general structure could be described like this:
-;;
-;; (define-resource <name-used-in-this-file> ()
-;;   :class <class-of-resource-in-triplestore>
-;;   :properties `((<json-property-name-one> <type-one> ,<triplestore-relation-one>)
-;;                 (<json-property-name-two> <type-two> ,<triplestore-relation-two>>))
-;;   :has-many `((<name-of-an-object> :via ,<triplestore-relation-to-objects>
-;;                                    :as "<json-relation-property>")
-;;               (<name-of-an-object> :via ,<triplestore-relation-from-objects>
-;;                                    :inverse t ; follow relation in other direction
-;;                                    :as "<json-relation-property>"))
-;;   :has-one `((<name-of-an-object :via ,<triplestore-relation-to-object>
-;;                                  :as "<json-relation-property>")
-;;              (<name-of-an-object :via ,<triplestore-relation-from-object>
-;;                                  :as "<json-relation-property>"))
-;;   :resource-base (s-url "<string-to-which-uuid-will-be-appended-for-uri-of-new-items-in-triplestore>")
-;;   :on-path "<url-path-on-which-this-resource-is-available>")
-
 (define-resource tracking-session ()
   :class (s-prefix "pozyx:TrackingSession")
 
-  :properties `((:description  :string  ,(s-prefix "pozyx:trackingSessionDescription"))) ;; for now a simple field
+  :properties `(
+                  (:description  :string  ,(s-prefix "pozyx:trackingSessionDescription"))
+                  (:raw-tracking-data-id  :string  ,(s-prefix "pozyx:rawTrackingDataId"))
+               )
 
   :has-one `((anchors-configuration :via ,(s-prefix "pozyx:hasAnchorsConfiguration")
-                              :as "anchors-configuration"))
-
-  :has-many `((tracking-location-element :via ,(s-prefix "pozyx:hasTrackingLocationElement")
-                              :as "tracking-location-elements"))
+                              :as "anchors-configuration")
+              )
 
   :resource-base (s-url "http://datakart.com/tracking-sessions/")
 
@@ -53,47 +29,27 @@
 
     :on-path "anchors-configurations")
 
-  (define-resource deployed-anchor ()
-    :class (s-prefix "pozyx:DeployedAnchor")
+(define-resource deployed-anchor ()
+  :class (s-prefix "pozyx:DeployedAnchor")
 
-    :properties `((:anchor-label  :string  ,(s-prefix "pozyx:anchorLabel"))) ;; the hex id for now
+  :properties `((:anchor-label  :string  ,(s-prefix "pozyx:anchorLabel"))) ;; the hex id for now
 
-    :has-one `((point-coordinates :via ,(s-prefix "pozyx:hasDeployedAnchorPointCoordinate")
-                                    :as "point-coordinates"))
+  :has-one `((point-coordinates :via ,(s-prefix "pozyx:hasDeployedAnchorPointCoordinate")
+                                  :as "point-coordinates"))
 
-    :resource-base (s-url "http://datakart.com/deployed-anchors/")
+  :resource-base (s-url "http://datakart.com/deployed-anchors/")
 
-    :on-path "deployed-anchors")
+  :on-path "deployed-anchors")
 
-    (define-resource point-coordinates ()
-      :class (s-prefix "pozyx:PointCoordinates")
+(define-resource point-coordinates ()
+  :class (s-prefix "pozyx:PointCoordinates")
 
-      :properties `(
-                    (:x-value  :string  ,(s-prefix "pozyx:x-value"))
-                    (:y-value  :string  ,(s-prefix "pozyx:y-value"))
-                    (:z-value  :string  ,(s-prefix "pozyx:z-value"))
-                    )
-
-      :resource-base (s-url "http://datakart.com/points-coordinates/")
-
-      :on-path "points-coordinates")
-
-
-  (define-resource tracking-location-element ()
-      :class (s-prefix "pozyx:TrackingLocationElement")
-
-      :properties `((:timestamp  :string  ,(s-prefix "pozyx:trackingLocationElementTimestamp")) ;; let's assume the units and format and shit
-                    (:signal-strength  :string  ,(s-prefix "pozyx:trackingLocationElementSignalStrength"))
-                    )
-
-      :has-one `(
-                  (point-coordinates :via ,(s-prefix "pozyx:hasTrackingLocationElementPointCoordinates")
-                    :as "point-coordinates")
-                  (tracking-session :via ,(s-prefix "pozyx:hasTrackingLocationElement")
-                    :inverse t
-                    :as "tracking-session")
+  :properties `(
+                  (:x-value  :string  ,(s-prefix "pozyx:x-value"))
+                  (:y-value  :string  ,(s-prefix "pozyx:y-value"))
+                  (:z-value  :string  ,(s-prefix "pozyx:z-value"))
                 )
 
-      :resource-base (s-url "http://datakart.com/tracking-location-elements/")
+  :resource-base (s-url "http://datakart.com/points-coordinates/")
 
-      :on-path "tracking-location-elements")
+  :on-path "points-coordinates")

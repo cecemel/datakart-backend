@@ -1,24 +1,21 @@
-# mu-project
+# datakart-backend
 
-Bootstrap a mu.semte.ch microservices environment in three easy steps.
-
-## How to
-
-Setting up your environment is done in three easy steps:  first you configure the running microservices and their names in `docker-compose.yml`, then you configure how requests are dispatched in `config/dispatcher.ex`, and lastly you start everything.
-
-### Hooking things up with docker-compose
-
-Alter the `docker-compose.yml` file so it contains all microservices you need.  The example content should be clear, but you can find more information in the [Docker Compose documentation](https://docs.docker.com/compose/).  Don't remove the `identifier` and `db` container, they are respectively the entry-point and the database of your application.  Don't forget to link the necessary microservices to the dispatcher and the database to the microservices.
-
-### Configure the dispatcher
-
-Next, alter the file `config/dispatcher.ex` based on the example that is there by default.  Dispatch requests to the necessary microservices based on the names you used for the microservice.
+Bootstrap datakart-backend based on a mu.semte.ch microservices environment in three easy steps.
 
 ### Boot up the system
 
 Boot your microservices-enabled system using docker-compose.
 
     cd /path/to/mu-project
-    docker-compose up
+    rm -rf data/db*; rm -rf data/datakart-raw-tracking/*; docker-rm-containers; docker-compose stop; docker-compose rm -f; docker-compose up
 
 You can shut down using `docker-compose stop` and remove everything using `docker-compose rm`.
+
+### query data
+
+traking-session will keep track of raw-data id
+
+http://localhost/tracking-sessions
+
+raw data ->
+http://localhost/raw-trackings-data/ce75c446-c7ea-4dad-8475-1a91562c231c/data-points?start=21:20:51.800559&end=21:20:51.972729
