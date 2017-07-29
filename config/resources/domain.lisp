@@ -5,7 +5,7 @@
 
   :properties `(
                   (:description  :string  ,(s-prefix "pozyx:trackingSessionDescription"))
-                  (:raw-tracking-data-id  :string  ,(s-prefix "pozyx:rawTrackingDataId"))
+                  (:raw-tracking-session-id  :string  ,(s-prefix "pozyx:rawTrackingSessionId"))
                   (:start-time  :string  ,(s-prefix "pozyx:startTime"))
                   (:end-time  :string  ,(s-prefix "pozyx:endTime"))
                )

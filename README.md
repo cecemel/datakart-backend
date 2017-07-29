@@ -15,7 +15,7 @@ You can shut down using `docker-compose stop` and remove everything using `docke
 
 traking-session will keep track of raw-data id
 
-http://localhost/tracking-sessions
+/tracking-sessions
 
-raw data ->
-http://localhost/raw-trackings-data/ce75c446-c7ea-4dad-8475-1a91562c231c/data-points?start=21:20:51.800559&end=21:20:51.972729
+raw data e.g ->
+/raw-tracking-sessions/0806976e-19cf-4bd6-9c3a-2839bc96ae22/data-points?start=21:20:51.800559&end=21:20:51.972729
