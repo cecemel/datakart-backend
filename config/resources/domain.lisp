@@ -36,15 +36,15 @@
 
   :properties `((:anchor-label  :string  ,(s-prefix "pozyx:anchorLabel"))) ;; the hex id for now
 
-  :has-one `((point-coordinates :via ,(s-prefix "pozyx:hasDeployedAnchorPointCoordinate")
-                                  :as "point-coordinates"))
+  :has-one `((point-coordinate :via ,(s-prefix "pozyx:hasDeployedAnchorPointCoordinate")
+                                  :as "point-coordinate"))
 
   :resource-base (s-url "http://datakart.com/deployed-anchors/")
 
   :on-path "deployed-anchors")
 
-(define-resource point-coordinates ()
-  :class (s-prefix "pozyx:PointCoordinates")
+(define-resource point-coordinate ()
+  :class (s-prefix "pozyx:PointCoordinate")
 
   :properties `(
                   (:x-value  :string  ,(s-prefix "pozyx:x-value"))
@@ -52,6 +52,6 @@
                   (:z-value  :string  ,(s-prefix "pozyx:z-value"))
                 )
 
-  :resource-base (s-url "http://datakart.com/points-coordinates/")
+  :resource-base (s-url "http://datakart.com/point-coordinates/")
 
-  :on-path "points-coordinates")
+  :on-path "point-coordinates")

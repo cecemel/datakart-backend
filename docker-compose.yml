@@ -36,6 +36,6 @@ services:
     #  - /Users/felix/git/datakart/datakart-raw-tracking-data-service:/app # for debugging
       - ./data/datakart-raw-tracking:/data
   import:
-    image: cecemel/datakart-import-data:0.0.3
+    image: cecemel/datakart-import-data:0.0.4
     links:
       - dispatcher:mu-host

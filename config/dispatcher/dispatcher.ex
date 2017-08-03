@@ -34,8 +34,8 @@ defmodule Dispatcher do
     Proxy.forward conn, path, "http://resource/deployed-anchors/"
   end
 
-  match "/points-coordinates/*path" do
-    Proxy.forward conn, path, "http://resource/points-coordinates/"
+  match "/point-coordinates/*path" do
+    Proxy.forward conn, path, "http://resource/point-coordinates/"
   end
 
   match "/raw-tracking-sessions/*path" do
