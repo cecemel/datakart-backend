@@ -29,7 +29,7 @@ services:
     volumes:
       - ./config/resources:/config
   datakart-raw-tracking-data-service:
-    image: cecemel/datakart-raw-tracking-data-service:0.0.5
+    image: cecemel/datakart-raw-tracking-data-service:0.1.0
     #ports:
      # - "99:5000" #debugging
     volumes:
